@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        font-family: Cambria;
+      }
+      .list {
+        position: relative;
+      }
+      .icon {
+        position: absolute;
+        right: 20px;
+        cursor: pointer;
+      }
+      #input {
+        width: 90%;
+        border-radius: 10px;
+        padding: 8px;
+      }
+      #button {
+        display: inline-block;
+        width: 60px;
+        height: 45px;
+        border: none;
+        border-radius: 5px;
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="col-md-6 offset-md-3 mt-5">
+        <h2 class="text-center">To Do List</h2>
+
+        <input type="text" id="input" placeholder="Add New List" />
+
+        <button id="button" onclick="addList()">Add</button>
+
+        <ul class="list-group mt-4" id="ul_list" type="hidden">
+          <li class="list-group-item">
+            Eat <span class="icon" onclick="removeMe(this)">x</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      function addList() {
+        var input = document.getElementById("input");
+        var createLi = document.createElement("li");
+        createLi.setAttribute("class", "list-group-item");
+
+        createLi.append(input.value);
+        var span = document.createElement("span");
+        span.setAttribute("class", "icon");
+        span.append("x");
+        span.setAttribute("onclick", "removeMe(this)");
+        createLi.append(span);
+        var mentionLi = document.getElementById("ul_list");
+        mentionLi.append(createLi);
+      }
+
+      function removeMe(e) {
+        e.parentNode.remove();
+      }
+    </script>
+  </body>
+</html>
